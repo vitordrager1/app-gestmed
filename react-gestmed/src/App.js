@@ -4,7 +4,7 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 
 // import AddTutorial from "./components/add-tutorial.component";
-import AddTutorial from "./components/ad";
+import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/tutorial.component";
 import TutorialsList from "./components/tutorials-list.component";
 

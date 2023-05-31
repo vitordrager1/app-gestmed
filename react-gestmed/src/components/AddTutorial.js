@@ -17,26 +17,28 @@ const AddTutorial = () =>  {
         setDescription(e.target.value)
     }
 
-    function handleDescriptionChange(e){
-        setDescription(e.target.value)
-    }
-
     function handleSaveTutorial(){
         var data = {
             id: id,
-            title: title
+            title: title,
+            description: description
         }
 
         TutorialDataService.create(data)
         .then(response => {
-            this.setState({
-            id: response.data.id,
-            title: response.data.title,
-            description: response.data.description,
-            published: response.data.published,
-
-            submitted: true
-            });
+            setId(id)
+            setTitle(title)
+            setDescription(description)
+            setPublished(published)
+            setSubmitted(true)
+            // this.setState({
+            // id: id,
+            // title: title,
+            // description: description,
+            // published: published,
+            // submitted: true
+            
+            // });
             console.log(response.data);
         })
         .catch(e => {
@@ -45,9 +47,9 @@ const AddTutorial = () =>  {
     }
 
     function handleNewTutorial(){
-        setId(null),
-        setTitle(''),
-        setDescription(''),
+        setId('')
+        setTitle('')
+        setDescription('')
         setPublished(false)
         setSubmitted(false)
     }
@@ -55,10 +57,10 @@ const AddTutorial = () =>  {
 
     return (
         <div className="submit-form">
-        {this.state.submitted ? (
+        {submitted ? (
             <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTutorial}>
+            <button className="btn btn-success" onClick={handleNewTutorial}>
                 Add
             </button>
             </div>
@@ -71,8 +73,8 @@ const AddTutorial = () =>  {
                 className="form-control"
                 id="title"
                 required
-                value={this.state.title}
-                onChange={this.onChangeTitle}
+                value={title}
+                onChange={handleTitleChange}
                 name="title"
                 />
             </div>
@@ -84,13 +86,13 @@ const AddTutorial = () =>  {
                 className="form-control"
                 id="description"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={description}
+                onChange={handleDescriptionChange}
                 name="description"
                 />
             </div>
 
-            <button onClick={this.saveTutorial} className="btn btn-success">
+            <button onClick={handleSaveTutorial} className="btn btn-success">
                 Submit
             </button>
             </div>
